@@ -1,16 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import DatePicker from 'react-datepicker';
+import ShowList from "./ShowList";
+import {List,Paper} from "@mui/material";
 import { ko } from 'date-fns/esm/locale';
 
 //https://mui.com/material-ui/getting-started/learn/
 import {ListItem, ListItemText, InputBase, Checkbox} from "@mui/material";
 
 
-const API_BASE_URL = "http://localhost:8080/api/show"
+const API_BASE_URL = "http://localhost:8080/api/show";
 
 const Show = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [itemState, setItemState] = useState([]);
+    const [theaterState, setTheaterState] = useState([]);
 
     function dateFormat(date) {
         let month = date.getMonth() + 1;
@@ -45,19 +48,33 @@ const Show = () => {
         ;
     },[startDate]);
 
-    const json = JSON.stringify(itemState);
+    const showItems = itemState.map(item =>
+         <ShowList key={item.showId} item={item}/>);
 
     return (
        <>
+
            <DatePicker
             selected={startDate}
             locale={ko}
             onChange={(date) => setStartDate(date)}
             inline
            />
-           <h3></h3>
-           <h4>{json}</h4>
 
+
+           <h4>{itemState.length}</h4>
+
+
+           <div>
+               <Paper style={{margin: 16}}>
+                   <List>
+                       {showItems}
+                   </List>
+               </Paper>
+
+           </div>
+
+           {/*<ul>{itemState[0].theaterName}</ul>*/}
 
        </>
 
