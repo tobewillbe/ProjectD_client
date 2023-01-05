@@ -7,6 +7,7 @@ import Datepicker from 'react-datepicker';
 
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
+import TimeTable from "./components/TimeTable";
 
 
 
@@ -36,7 +37,7 @@ const App =() => {
 
   return (
       <div className="App">
-        <Show/>
+        <TimeTable/>
 
 
       </div>

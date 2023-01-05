@@ -13,7 +13,7 @@ const API_BASE_URL = "http://localhost:8080/api/show";
 const Show = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [itemState, setItemState] = useState([]);
-    const [theaterState, setTheaterState] = useState([]);
+
 
     function dateFormat(date) {
         let month = date.getMonth() + 1;
@@ -48,11 +48,11 @@ const Show = () => {
         ;
     },[startDate]);
 
-    const showItems = itemState.map(item =>
-         <ShowList key={item.showId} item={item}/>);
+    const showItems = itemState.map(item => <ShowList key={item.showId} item={item}/>);
 
     return (
        <>
+
 
            <DatePicker
             selected={startDate}
@@ -61,9 +61,7 @@ const Show = () => {
             inline
            />
 
-
            <h4>{itemState.length}</h4>
-
 
            <div>
                <Paper style={{margin: 16}}>

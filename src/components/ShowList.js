@@ -1,13 +1,13 @@
 import {useEffect, useState} from "react";
 import {ListItem,ListItemText,InputBase,ListItemSecondaryAction,IconButton} from "@mui/material";
-import {DeleteOutline} from "@mui/icons-material";
+
 
 const ShowList = (item) =>{
 
-    const [itemState, setItemState] =useState(item);
+    const [showState, setShowState] =useState(item);
 
-    let {movieNm, screenNm ,showDate, showId, showTime, theaterName} = itemState.item;
-    console.log('itemState:',itemState);
+    let {movieNm, screenNm ,showDate, showId, showTime, theaterNm} = showState.item;
+    console.log('showState:', showState);
 
     return (
         <ListItem>
@@ -17,7 +17,7 @@ const ShowList = (item) =>{
                     type="text"
                     id={showId}
                     name={showId}
-                    value={theaterName+ '     ' + screenNm + '    ' + movieNm + '    ' + showTime + '    '}
+                    value={theaterNm+ '     ' + screenNm + '    ' + movieNm + '    ' + showTime + '    '}
                     multiline={true}
                     fullWidth={true}
                 />
