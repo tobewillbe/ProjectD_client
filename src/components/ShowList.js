@@ -1,6 +1,5 @@
-import {useEffect, useState} from "react";
-import {ListItem,ListItemText,InputBase,ListItemSecondaryAction,IconButton} from "@mui/material";
-
+import {useState} from "react";
+import {ListItem, Button} from "@mui/material";
 
 const ShowList = (item) =>{
 
@@ -9,23 +8,13 @@ const ShowList = (item) =>{
     let {movieNm, screenNm ,showDate, showId, showTime, theaterNm} = showState.item;
     console.log('showState:', showState);
 
+    const reserve = "/reserve/"+showId;
+
     return (
         <ListItem>
-            <ListItemText>
-                <InputBase
-                    inputProps={{"aria-label" : "naked"}}
-                    type="text"
-                    id={showId}
-                    name={showId}
-                    value={screenNm + '    ' + showTime}
-                    multiline={true}
-                    fullWidth={true}
-                />
-            </ListItemText>
-            {/* 삭제 버튼 */}
-            <ListItemSecondaryAction>
-
-            </ListItemSecondaryAction>
+            <Button sx={{width : 100}} size = "small" href={reserve}>
+                {screenNm +'   ' + showTime}
+            </Button>
         </ListItem>
     );
 }

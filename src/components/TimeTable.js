@@ -4,7 +4,6 @@ import {List, Paper} from "@mui/material";
 import MovieList from "./MovieList";
 import LocationList from "./LocationList";
 import TheaterList from "./TheaterList";
-import ShowList from "./ShowList";
 import "../Timetable.css";
 
 const API_BASE_URL="http://localhost:8080/api";
@@ -13,9 +12,8 @@ const TimeTable = () => {
     const [mvState, setMvState] = useState([]);
     const [ttState, setTTState] = useState([]);
     const [locState, setLocState] = useState([]);
-    const [thState, setThState] = useState([]);
-    const [mvCdState, setMvCdState] = useState([]);
-    const [dateState, setDateState] = useState([]);
+    const [thState, setThState] = useState(["0111"]);
+    const [mvCdState, setMvCdState] = useState(["20022020"]);
 
     const location = target => {
         fetch(API_BASE_URL+'/theater/'+target)
@@ -45,6 +43,7 @@ const TimeTable = () => {
         setMvCdState(target);
         console.log("mvCdState: ", mvCdState);
     }
+
     const mvitem = mvState.map(item => <MovieList key={item.movieCd} item={item} movie={movie}/>);
     const locitem = ttState.map(item => <LocationList key={item.locationID} item={item} location={location}/>);
     const thitem = locState.map(item => <TheaterList key={item.theaterID} item={item} theater={theater}/>);
@@ -89,7 +88,7 @@ const TimeTable = () => {
     },[]);
 
     return(<div>
-        <div class="container" style={{margin: 10}}>
+        <div className="container" style={{margin: 10}}>
             <Paper style={{margin: 16}} sx={{width :160}}>
                 <List>
                     {mvitem}
