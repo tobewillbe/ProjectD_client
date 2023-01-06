@@ -6,7 +6,7 @@ const LocationList = ({item,location}) =>{
     const [locState, setLocState] =useState(item);
 
     let {locationID, locationNm} = locState;
-    console.log('locState:',locState);
+    //console.log('locState:',locState);
 
     const onClickHandler = e =>{
         location(locationID);
@@ -14,7 +14,7 @@ const LocationList = ({item,location}) =>{
 
     return (
         <ListItem>
-            <Button size = "small" onClick={onClickHandler}>
+            <Button sx={{textAlign:'center', width : 100}} onClick={onClickHandler}>
                 {locationNm}
             </Button>
         </ListItem>

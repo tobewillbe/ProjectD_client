@@ -5,7 +5,7 @@ import {ListItem,ListItemText,InputBase,ListItemSecondaryAction,IconButton} from
 const ShowList = (item) =>{
 
     const [showState, setShowState] =useState(item);
-
+    console.log(showState);
     let {movieNm, screenNm ,showDate, showId, showTime, theaterNm} = showState.item;
     console.log('showState:', showState);
 
@@ -17,7 +17,7 @@ const ShowList = (item) =>{
                     type="text"
                     id={showId}
                     name={showId}
-                    value={theaterNm+ '     ' + screenNm + '    ' + movieNm + '    ' + showTime + '    '}
+                    value={screenNm + '    ' + showTime}
                     multiline={true}
                     fullWidth={true}
                 />

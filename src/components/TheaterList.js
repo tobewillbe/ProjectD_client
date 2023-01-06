@@ -6,15 +6,15 @@ const TheaterList = ({item,theater}) =>{
     const [thState, setThState] =useState(item);
 
     let {address, locationID, tell, theaterID, theaterNm} = thState;
-    console.log('thState:',thState);
 
     const onClickHandler = e =>{
+        //console.log("theaterID :", theaterID)
         theater(theaterID);
     }
 
     return (
         <ListItem>
-            <Button size = "small" onClick={onClickHandler}
+            <Button sx={{width : 100}} size = "small" onClick={onClickHandler}
             >
                 {theaterNm}
             </Button>

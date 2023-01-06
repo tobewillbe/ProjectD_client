@@ -10,7 +10,14 @@ import {ListItem, ListItemText, InputBase, Checkbox} from "@mui/material";
 
 const API_BASE_URL = "http://localhost:8080/api/show";
 
-const Show = () => {
+const Show = ({movie, theater, mdate}) => {
+    console.log(movie)
+    console.log("movie :", movie);
+
+    console.log("theater :", theater);
+    console.log("date :", mdate);
+
+
     const [startDate, setStartDate] = useState(new Date());
     const [itemState, setItemState] = useState([]);
 
@@ -27,8 +34,8 @@ const Show = () => {
 
 
     useEffect(()=> {
-        console.log(`${API_BASE_URL}, date: ${dateFormat(startDate)}`);
-        fetch(API_BASE_URL + "/" + dateFormat(startDate))
+        // console.log(`${API_BASE_URL}, date: ${dateFormat(startDate)}`);
+        fetch(API_BASE_URL + "/" + dateFormat(startDate) + "/" + movie + "/" + theater)
             .then(res => {
                 if (res.status === 403) {
                     // setTimeout(() => {
@@ -61,18 +68,13 @@ const Show = () => {
             inline
            />
 
-           <h4>{itemState.length}</h4>
-
            <div>
                <Paper style={{margin: 16}}>
                    <List>
                        {showItems}
                    </List>
                </Paper>
-
            </div>
-
-           {/*<ul>{itemState[0].theaterName}</ul>*/}
 
        </>
 
