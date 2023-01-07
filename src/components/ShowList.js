@@ -12,7 +12,7 @@ const ShowList = (item) =>{
 
     return (
         <ListItem>
-            <Button sx={{width : 100}} size = "small" href={reserve}>
+            <Button sx={{width : 120}}  href={reserve}>
                 {screenNm +'   ' + showTime}
             </Button>
         </ListItem>

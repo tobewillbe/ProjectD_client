@@ -14,7 +14,7 @@ const TheaterList = ({item,theater}) =>{
 
     return (
         <ListItem>
-            <Button sx={{width : 100}} size = "small" onClick={onClickHandler}
+            <Button sx={{width : 120}} onClick={onClickHandler}
             >
                 {theaterNm}
             </Button>

@@ -13,8 +13,8 @@ const LocationList = ({item,location}) =>{
     }
 
     return (
-        <ListItem>
-            <Button sx={{textAlign:'center', width : 100}} onClick={onClickHandler}>
+        <ListItem alignItems='flex-start'>
+            <Button sx={{textAlign:'center', width : 120}} onClick={onClickHandler}>
                 {locationNm}
             </Button>
         </ListItem>
