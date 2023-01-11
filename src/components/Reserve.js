@@ -2,13 +2,20 @@ import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import ChairIcon from '@mui/icons-material/Chair';
 import ShowSeatList from "./ShowSeatList";
-import {List, Paper, Table} from "@mui/material";
+import {List, Paper, Table, TableBody, TableCell, TableRow} from "@mui/material";
 
 const API_BASE_URL="http://localhost:8080/api";
 const Reserve = () =>{
     const {ReserveId} = useParams();
+    const [seatState, setSeatState] = useState([]);
+    const [rowState,setRowState] =useState();
+    const [lengthState,setLengthState] = useState(0);
 
-    const [seatState, setSeatState] = useState([],[]);
+    const lastItem = (result) =>{
+        return result[result.length-1].seatNum.substring(1);
+    };
+
+
     let{showSeatID, seatID, seatStatus, seatNum } = seatState;
         useEffect(() => {
                 fetch(API_BASE_URL+'/reserve/showseat/'+ {ReserveId}.ReserveId)
@@ -25,23 +32,37 @@ const Reserve = () =>{
                             }
                     })
                     .then(result => {
-                            console.log('server result: ', result);
+                            setRowState(lastItem(result));
                             setSeatState(result);
+                            setLengthState(result.length);
                     })
         }, []);
 
-    //     const lastItem = () =>{
-    //         return seatState[seatState.length-1].seatNum.slice(1);
-    //     };
-    //     const itemLength = () =>{
-    //         console.log(seatState.length);
-    //         return seatState.length;
-    //     };
-    //
-    // setTimeout(lastItem,1000);
-    // setTimeout(itemLength,1000);
-    // console.log (lastItem(),itemLength());
+    console.log ("rowState: ", rowState, "length:", lengthState);
+    console.log("seatState:", seatState);
     const seatItem = seatState.map(item => <ShowSeatList key={item.showSeatID} item={item}/>);
+
+
+    const tables = (col) => {
+        const row = parseInt(rowState);
+        const array=[];
+
+        for (let i = 0; i<row; i++){
+            array.push(<TableCell>{seatItem[i+col*row]}</TableCell>)
+        }
+        return array;
+    };
+
+    const table_two =() =>{
+        const col =lengthState/ parseInt(rowState);
+        const array=[];
+        console.log(col);
+        for (let i = 0; i<col; i++){
+            array.push(<TableRow>{tables(i)}</TableRow>)
+        }
+        return array;
+    }
+
     return(
         <div>
 
@@ -80,13 +101,16 @@ const Reserve = () =>{
             <ChairIcon color='error' sx={{fontSize:60}}></ChairIcon>
             <h1> {ReserveId}  테스트</h1>
             <div>
-                <Table>
-                    <tr>
-                        <td> {seatItem[0]}</td>
-                        <td> {seatItem[1]}</td>
-                    </tr>
-                </Table>
+                <table>
+                    <TableBody sx={{size:50}}>
+                        <TableRow sx={{size:8, margin:2}}>
+                            {table_two()}
+                        </TableRow>
+
+                    </TableBody>
+                </table>
             </div>
+            <div>아아</div>
         </div>
 
     );

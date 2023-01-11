@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import {Button, ListItem} from "@mui/material";
+import {Button, ListItem, TableRow} from "@mui/material";
 
 const ShowSeatList = (item) => {
 
     const [seatState, setSeatState] =useState(item);
-    //console.log(seatState);
+    console.log(seatState);
     let {showSeatID, seatID, seatStatus, seatNum } = seatState.item;
     const [pushed,setpushed] = useState(false);
 
@@ -14,12 +14,12 @@ const ShowSeatList = (item) => {
     }
 
     return (
-        <ListItem>
-            <Button sx={{width : 120}} onClick={onClickHandler}
-            >
-                {seatNum}
+
+            <Button sx={{width : 3}}>
+            {seatNum}
             </Button>
-        </ListItem>
+
+
     );
 
 };

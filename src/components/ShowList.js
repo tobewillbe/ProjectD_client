@@ -4,7 +4,7 @@ import {ListItem, Button} from "@mui/material";
 const ShowList = (item) =>{
 
     const [showState, setShowState] =useState(item);
-    console.log(showState);
+    console.log("showState: ", showState);
     let {movieNm, screenNm ,showDate, showId, showTime, theaterNm} = showState.item;
     console.log('showState:', showState);
 
